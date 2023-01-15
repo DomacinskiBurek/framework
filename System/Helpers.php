@@ -11,7 +11,7 @@ if (!function_exists('language')) {
 
     function language (string $line, array $args = [])
     {
-        $language = Language::Initialize();
+        $language = Language::Init();
         $language->setLanguageLocale(System::getActiveLanguage());
 
         return $language->getLine($line, $args);

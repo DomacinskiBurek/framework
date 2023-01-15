@@ -2,7 +2,7 @@
 DEVELOPMENT:
   DRIVER: mysql
   HOST: localhost
-  DATABASE: test
+  DATABASE: framework
   USER: root
   PASSWORD:
   PORT: 3306
@@ -11,7 +11,7 @@ DEVELOPMENT:
 PRODUCTION:
   DRIVER: mysql
   HOST: localhost
-  DATABASE: test
+  DATABASE: framework
   USER: root
   PASSWORD:
   PORT: 3306

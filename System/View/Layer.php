@@ -9,16 +9,7 @@ use DomacinskiBurek\System\View\Interfaces\LayerInterface;
 class Layer implements LayerInterface
 {
     protected array $registerLayers = [
-        "{{ USER_SIDEBAR }}"        => "Shared.Sidebar",
-        "{{ META_TAG_LIST }}"       => "Shared.MetaTags",
-        "{{ MAIN_HEADER }}"         => "Shared.MainHeader",
-        "{{ MAIN_FOOTER }}"         => "Shared.MainFooter",
-        "{{ AUTH_FOOTER }}"         => "Shared.AuthFooter",
-        "{{ PROFILE_SIMPLEBAR }}"   => "Admin.Profile.Simplebar",
-        "{{ PORTAL_META }}"         => "Shared.PortalMeta",
-        "{{ PORTAL_MAIN_NAV }}"     => "Shared.PortalMainNav",
-        "{{ PORTAL_SIDE_NAV }}"     => "Shared.PortalSubNav",
-        "{{ PORTAL_MAIN_FOOTER }}"  => "Shared.PortalMainFooter"
+        "{{ USER_SIDEBAR }}"        => "Shared.Sidebar"
     ];
 
     /**

@@ -11,14 +11,10 @@ use DomacinskiBurek\System\Error\Handlers\NotFound;
 use DomacinskiBurek\System\Filesystem\File;
 use DomacinskiBurek\System\System;
 use DomacinskiBurek\System\View;
+use SplFileObject;
 
 class Error extends Exception
 {
-    /**
-     * @throws FileNotFound
-     * @throws FileNotWrittable
-     * @throws DirectoryFailure
-     */
     final public function __toString() : string
     {
         $this->__LogError();
@@ -40,11 +36,6 @@ class Error extends Exception
         }
     }
 
-    /**
-     * @throws FileNotWrittable
-     * @throws DirectoryFailure
-     * @throws FileNotFound
-     */
     final public function __LogError ()
     {
         $location  = System::GetDirectory();
@@ -52,7 +43,7 @@ class Error extends Exception
 
         $location .= $separator . "Cache";
 
-        $file = new File("$location/error_log.log", 'a');
+        $file = new SplFileObject("$location/error_log.log", 'a');
 
         //if (!is_dir($location)) $directory->Create($location);
 

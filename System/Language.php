@@ -3,11 +3,11 @@
 namespace DomacinskiBurek\System;
 
 use Exception;
-use http\Exception\RuntimeException;
+
 class Language
 {
     private static string $languageLocale = 'en_US';
-    private string $location = __DIR__ . '/Language';
+    private string $location;
 
     private static ?Language $instance = null;
 
@@ -97,7 +97,7 @@ class Language
         return (!is_array($list)) ? [] : $list;
     }
 
-    public static function Initialize(): Language
+    public static function Init(): Language
     {
         if (is_null(self::$instance)) self::$instance = new static();
 

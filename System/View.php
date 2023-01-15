@@ -2,14 +2,14 @@
 
 namespace DomacinskiBurek\System;
 
-use DomacinskiBurek\System\Error\Handlers\DatabaseNotFound;
 use DomacinskiBurek\System\View\Interfaces\RenderInterface;
 use DomacinskiBurek\System\View\Template;
+use Exception;
 
 class View implements RenderInterface
 {
     /**
-     * @throws DatabaseNotFound
+     * @throws Exception
      */
     public static function render($source, ?array $resource = null, int $code = 200, ?string $header = null)
     {
