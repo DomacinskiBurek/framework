@@ -1,0 +1,18 @@
+---
+DEVELOPMENT:
+  DRIVER: mysql
+  HOST: localhost
+  DATABASE: test
+  USER: root
+  PASSWORD:
+  PORT: 3306
+  CHARSET: utf8_general_ci
+---
+PRODUCTION:
+  DRIVER: mysql
+  HOST: localhost
+  DATABASE: test
+  USER: root
+  PASSWORD:
+  PORT: 3306
+  CHARSET: utf8_general_ci

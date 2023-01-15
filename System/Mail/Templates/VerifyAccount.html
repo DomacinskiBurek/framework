@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="{{ SITE_URL }}/images/favicon.png">
+    <!-- Page Title  -->
+    <title>Email Templates | DashLite Admin Template</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="{{ SITE_URL }}/assets/css/dashlite.css?ver=3.0.3">
+    <link id="skin-default" rel="stylesheet" href="{{ SITE_URL }}/assets/css/theme.css?ver=3.0.3">
+    <link rel="stylesheet" href="{{ SITE_URL }}/assets/css/style-email.css">
+</head>
+<body>
+    <table class="email-wraper">
+        <tr>
+            <td class="py-5">
+                <table class="email-header">
+                    <tbody>
+                    <tr>
+                        <td class="text-center pb-4">
+                            <a href="{{ SITE_URL }}"><img class="email-logo" src="{{ SITE_URL }}/images/logo-dark2x.png" alt="logo"></a>
+                            <p class="email-title">Conceptual Base Modern Dashboard Theme</p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="email-body">
+                    <tbody>
+                    <tr>
+                        <td class="px-3 px-sm-5 pt-3 pt-sm-5 pb-3">
+                            <h2 class="email-heading">Confirm Your E-Mail Address</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 px-sm-5 pb-2">
+                            <p>Hi {{ RECIPIENT_NAME }},</p>
+                            <p>Welcome! <br> You are receiving this email because you have registered on our site.</p>
+                            <p>Click the link below to active your DashLite account.</p>
+                            <p class="mb-4">This link will expire in 15 minutes and can only be used once.</p>
+                            <a href="{{ RECEIPMENT_ACCOUNT_VERIFY_EMAIL }}" class="email-btn">Verify Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 px-sm-5 pt-4">
+                            <h4 class="email-heading-s2">or</h4>
+                            <p>If the button above does not work, paste this link into your web browser:</p>
+                            <a href="{{ RECEIPMENT_ACCOUNT_VERIFY_EMAIL }}" class="link-block">{{ RECEIPMENT_ACCOUNT_VERIFY_EMAIL }}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 px-sm-5 pt-4 pb-3 pb-sm-5">
+                            <p>If you did not make this request, please contact us or ignore this message.</p>
+                            <p class="email-note">This is an automatically generated email please do not reply to this email. If you face any issues, please contact us at
+                                {{ SENDER_CONTACT_EMAIL }}</p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="email-footer">
+                    <tbody>
+                    <tr>
+                        <td class="text-center pt-4">
+                            <p class="email-copyright-text">Copyright © 2020 DashLite. All rights reserved. <br> Template Made By <a href="https://themeforest.net/user/softnio/portfolio">Softnio</a>.</p>
+                            <ul class="email-social">
+                                <li><a href="#"><img src="{{ SITE_URL }}/images/socials/facebook.png" alt=""></a></li>
+                                <li><a href="#"><img src="{{ SITE_URL }}/images/socials/twitter.png" alt=""></a></li>
+                                <li><a href="#"><img src="{{ SITE_URL }}/images/socials/youtube.png" alt=""></a></li>
+                                <li><a href="#"><img src="{{ SITE_URL }}/images/socials/medium.png" alt=""></a></li>
+                            </ul>
+                            <p class="fs-12px pt-4">This email was sent to you as a registered member of <a href="{{ SITE_URL }}">softnio.com</a>. To update your emails preferences <a href="{{ SITE_URL }}">click here</a>.</p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,9 @@
+SMTP_SERVER=mail.maturanti.ba
+SMTP_PORT=587
+SMTP_USER=noreply@maturanti.ba
+SMTP_PASSWORD=&z,L-,FVHoWY
+SMTP_SENDER_NAME=noreply
+SMTP_SENDER=noreply@maturanti.ba
+SMTP_SECURE=tls
+SMTP_AUTH=1
+SMTP_DEBUG=0
