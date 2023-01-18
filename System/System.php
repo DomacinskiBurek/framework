@@ -28,7 +28,7 @@ class System
 
     public static function getLanguageDirectory (): string
     {
-        return self::getDirectory() . "/Cache";
+        return self::getDirectory() . "/Language";
     }
 
     public static function getCacheDirectory (): string
@@ -74,7 +74,6 @@ class System
         return self::$languages;
     }
 
-
     public static function getActiveLanguage (): string
     {
         $session = new Session();
@@ -103,75 +102,5 @@ class System
         }
 
         return $locale ?? "en_US";
-    }
-
-    public static function getFileTypeByExtension (string $extension): string
-    {
-        switch ($extension) {
-            case "png":
-                return "image/png";
-            case "svg":
-                return "image/svg+xml";
-            case "jpg":
-                return "image/jpg";
-            case "jpeg":
-            default:
-                return "image/jpeg";
-        }
-    }
-
-    /**
-     * @throws DirectoryFailure
-     */
-    public static function uploadAttachment (array $property, string $filename, string $location): ?string
-    {
-        if ($property["size"] > 10737418240) return "filesize must be less than 10MB";
-
-        if (!in_array(strtolower($property["extension"]), ["jpg", "png", "jpeg"])) return "file must contain valid extension";
-
-        if (Storage::directoryGenerator($location) === false) return "unable to process your request";
-
-        if (move_uploaded_file($property["tmp_location"], "$location/$filename.{$property["extension"]}") === false) return "unable to store your attachment";
-
-        return null;
-    }
-
-    public static function resizeImage (File $file, ?int $newWidth)
-    {
-        $image = $file->fread($file->getSize());
-
-        if (is_null($newWidth)) return $image;
-
-        $image = imagecreatefromstring($image);
-
-        $width  = imagesx($image);
-        $height = imagesy($image);
-
-        $ratio     = $newWidth / $width;
-        $newHeight = ceil($height * $ratio);
-
-        $temporary = imagecreatetruecolor($newWidth, $newHeight);
-
-        imagecopyresampled($temporary, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-        // Buffer
-        ob_start();
-
-        switch ($file->getExtension()) {
-            case "png":
-                imagepng($temporary);
-                break;
-            case "jpg":
-            case "jpeg":
-                imagejpeg($temporary);
-                break;
-        }
-
-        $image = ob_get_contents();
-        ob_end_clean();
-
-        imagedestroy($temporary);
-
-        return $image ?? null;
     }
 }

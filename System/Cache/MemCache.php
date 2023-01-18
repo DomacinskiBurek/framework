@@ -4,7 +4,7 @@ namespace DomacinskiBurek\System\Cache;
 
 use DomacinskiBurek\System\Cache\Interfaces\Cache;
 
-class Memcache implements Cache
+class MemCache implements Cache
 {
 
     public function connect()

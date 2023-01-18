@@ -11,10 +11,10 @@ if (!function_exists('language')) {
 
     function language (string $line, array $args = [])
     {
-        $language = Language::Init();
-        $language->setLanguageLocale(System::getActiveLanguage());
+        $language = new Language();
+        $language->setLocale(System::getActiveLanguage());
 
-        return $language->getLine($line, $args);
+        return $language->translate($line, $args);
     }
 }
 

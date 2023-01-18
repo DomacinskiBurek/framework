@@ -2,84 +2,67 @@
 
 namespace DomacinskiBurek\System;
 
-use Exception;
-
 class Language
 {
-    private static string $languageLocale = 'en_US';
-    private string $location;
+    private string $defaultLocale = "en_US";
+    private array $languages = [];
+    private array $files = [];
 
-    private static ?Language $instance = null;
-
-    protected function __construct() { }
-    protected function __clone() { }
-
-    /**
-     * @throws Exception
-     */
-    public function __wakeup()
+    public function setLocale (?string $locale) : void
     {
-        throw new Exception("Cannot unserialize singleton");
+        if (!is_null($locale)) $this->defaultLocale = $locale;
     }
 
-    private array $language           = [];
-    private array $languageFiles      = [];
-
-    public function setLanguageLocale (string $languageLocale): void
+    public function getLocale () : string
     {
-        self::$languageLocale = $languageLocale;
+        return $this->defaultLocale;
     }
 
-    public static function getLanguageLocale (): string
+    public function translate (string $langString, array $implement = [], ?string $locale = null)
     {
-        return self::$languageLocale;
+        if (!is_null($locale)) $this->setLocale($locale);
+
+        [$file, $line] = $this->getTranslation($langString);
+
+        $locale = $this->getLocale();
+        if (!array_key_exists($line, $this->languages[$locale][$file])) return $line;
+
+        return !empty($implement) ? $this->formatTranslateLine($this->languages[$locale][$file][$line], $implement) : $this->languages[$locale][$file][$line];
     }
 
-    public function getTranslation (string $langString): array
+    private function getTranslation (string $langString): array
     {
         $targetFile = substr($langString, 0, strpos($langString, '.'));
         $targetLine = substr($langString, strlen($targetFile) + 1);
 
-        if (!isset($this->language[$this->getLanguageLocale()][$targetFile]) || !array_key_exists($targetLine, $this->language[$this->getLanguageLocale()][$targetFile])) {
-            $this->loadTranslation($targetFile, $this->getLanguageLocale());
+        $locale = $this->getLocale();
+        if (!isset($this->language[$locale][$targetFile]) || !array_key_exists($targetLine, $this->language[$locale][$targetFile])) {
+            $this->loadTranslation($targetFile, $this->getLocale());
         }
 
         return [$targetFile, $targetLine];
     }
 
-    public function getLine (string $langString, array $resources = [], ?string $locale = null)
-    {
-        if (!is_null($locale)) $this->setLanguageLocale($locale);
-
-        [$file, $line] = $this->getTranslation($langString);
-
-        if (!array_key_exists($line, $this->language[$this->getLanguageLocale()][$file])) return $line;
-
-        return !empty($resources) ? $this->formatTranslateLine($this->language[$this->getLanguageLocale()][$file][$line], $resources) : $this->language[$this->getLanguageLocale()][$file][$line];
-    }
-
-    protected function formatTranslateLine (string $line, array $resources): string
+    private function formatTranslateLine (string $line, array $resources): string
     {
         return sprintf($line, ...$resources);
     }
 
-    protected function loadTranslation (string $targetFile, string $languageLocale): array
+    private function loadTranslation (string $targetFile, string $languageLocale): void
     {
-        if (!array_key_exists($languageLocale, $this->languageFiles)) $this->languageFiles[$languageLocale] = [];
-        if (in_array($targetFile, $this->languageFiles, true)) return [];
+        if (!array_key_exists($languageLocale, $this->files)) $this->files[$languageLocale] = [];
+        if (in_array($targetFile, $this->files, true)) return;
 
-        if (!array_key_exists($languageLocale, $this->language)) $this->language[$languageLocale] = [];
-        if (!array_key_exists($targetFile, $this->language[$languageLocale])) $this->language[$languageLocale][$targetFile] = [];
+        if (!array_key_exists($languageLocale, $this->languages)) $this->languages[$languageLocale] = [];
+        if (!array_key_exists($targetFile, $this->languages[$languageLocale])) $this->languages[$languageLocale][$targetFile] = [];
 
-        $languagePath    = "$this->location/" . $this->getLanguageLocale() . "/$targetFile.php";
+        $languagePath    = System::getLanguageDirectory() . "/" . $this->getLocale() . "/$targetFile.php";
 
         $requireLanguage = $this->requireLanguage($languagePath);
 
-        $this->languageFiles[$languageLocale][] = $targetFile;
+        $this->files[$languageLocale][] = $targetFile;
 
-        $this->language[$languageLocale][$targetFile] = $requireLanguage;
-
-        return [];
+        $this->languages[$languageLocale][$targetFile] = $requireLanguage;
     }
 
     private function requireLanguage (string $languagePath) : array
@@ -95,14 +78,5 @@ class Language
         }
 
         return (!is_array($list)) ? [] : $list;
-    }
-
-    public static function Init(): Language
-    {
-        if (is_null(self::$instance)) self::$instance = new static();
-
-        self::$instance->location = System::getLanguageDirectory();
-
-        return self::$instance;
     }
 }
