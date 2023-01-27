@@ -51,7 +51,10 @@ abstract class Model
             $this->__set($property, $propertyValue);
         }
     }
-
+    public function getProperties (): array
+    {
+        return get_object_vars($this);
+    }
     protected function marshalMap(array $fields): array
     {
         $properties = $this->marshalProperties();

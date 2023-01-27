@@ -8,15 +8,40 @@ use DomacinskiBurek\System\Query\Interfaces\QueryInterface;
 use DomacinskiBurek\System\Query\SelectQuery;
 use DomacinskiBurek\System\Query\UpdateQuery;
 use DomacinskiBurek\System\Query\DeleteQuery;
+use TypeError;
 
 class Query
 {
     /**
      * @throws Exception
      */
-    public static function generate (string $queryName, ?array $queryParams = null): string
+    public static function generate (string $queryName, array|Model|null $queryParams = null): string
     {
-        return static::determinate(static::queryType($queryName))->build(substr($queryName, (strpos($queryName, ':') + 2)), $queryParams);
+        return static::build(static::determinate(static::queryType($queryName)), substr($queryName, (strpos($queryName, ':') + 2)), $queryParams);
+    }
+
+
+    /**
+     * @throws Exception
+     */
+    private static function build(QueryInterface $query, string $queryString, array|Model|null $params): string
+    {
+        switch (true) {
+            case (is_null($params)):
+                return $query->get($queryString);
+            case ($params instanceof Model):
+                $queryString = $query->get($queryString);
+                foreach ($params->getProperties() as $key => $value) {
+                    if (str_contains($queryString, $key)) {
+                        $queryString = str_replace($queryString, ":$key", is_string($value) ? '$value' : $value);
+                    }
+                }
+                return $queryString;
+            case (is_array($params)):
+                return sprintf($query->get($queryString), ...$params);
+            default:
+                throw new TypeError("unexpected");
+        }
     }
 
     /**

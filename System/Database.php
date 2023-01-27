@@ -29,7 +29,7 @@ class Database
     /**
      * @throws DatabaseException
      */
-    public static function connect (string $dbConfig) : ?PDO
+    public static function connect (string $dbConfig = "database") : ?PDO
     {
         if (!isset(self::$instances[$dbConfig])) {
             self::$instances[$dbConfig] = self::connection($dbConfig);

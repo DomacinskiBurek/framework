@@ -27,15 +27,7 @@ class UpdateQuery implements QueryInterface
     /**
      * @throws Exception
      */
-    public function build(string $query, ?array $params): string
-    {
-        return (is_null($params)) ? $this->get($query) : sprintf($this->get($query), ...$params);
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function get(string $query) : string
+    public function get(string $query) : string
     {
         if (array_key_exists($query, $this->queryBox) === false) throw new Exception('Query does not exist in our system.');
 

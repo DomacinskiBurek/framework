@@ -150,3 +150,67 @@
 #1 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(12): DomacinskiBurek\System\Model->__bind()
 #2 {main}
 --------------------------------------
+--------------------------------------
+[] - Code 0
+[] - Line 24
+[] - Message 
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/Model.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(12): DomacinskiBurek\System\Model->__set()
+#1 {main}
+--------------------------------------
+--------------------------------------
+[] - Code 0
+[] - Line 24
+[] - Message 
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/Model.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(12): DomacinskiBurek\System\Model->__set()
+#1 {main}
+--------------------------------------
+--------------------------------------
+[] - Code 0
+[] - Line 24
+[] - Message 
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/Model.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(12): DomacinskiBurek\System\Model->__set()
+#1 {main}
+--------------------------------------
+--------------------------------------
+[] - Code 0
+[] - Line 24
+[] - Message 
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/Model.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(12): DomacinskiBurek\System\Model->__set()
+#1 {main}
+--------------------------------------
+--------------------------------------
+[] - Code 0
+[] - Line 24
+[] - Message 
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/Model.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(12): DomacinskiBurek\System\Model->__set()
+#1 {main}
+--------------------------------------
+--------------------------------------
+[] - Code 0
+[] - Line 24
+[] - Message 
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/Model.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(12): DomacinskiBurek\System\Model->__set()
+#1 {main}
+--------------------------------------
+--------------------------------------
+[] - Code 0
+[] - Line 24
+[] - Message 
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/Model.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(12): DomacinskiBurek\System\Model->__set()
+#1 {main}
+--------------------------------------
+--------------------------------------
+[] - Code 0
+[] - Line 24
+[] - Message 
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/Model.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(12): DomacinskiBurek\System\Model->__set()
+#1 {main}
+--------------------------------------

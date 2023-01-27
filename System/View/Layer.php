@@ -9,7 +9,9 @@ use DomacinskiBurek\System\View\Interfaces\LayerInterface;
 class Layer implements LayerInterface
 {
     protected array $registerLayers = [
-        "{{ USER_SIDEBAR }}"        => "Shared.Sidebar"
+        "{{ USER_SIDEBAR }}" => "Shared.Sidebar",
+        "{{ AUTH_HEADER }}"  => "Shared.authHeader",
+        "{{ AUTH_FOOTER }}"  => "Shared.authFooter"
     ];
 
     /**

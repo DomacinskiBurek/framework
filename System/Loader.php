@@ -4,6 +4,8 @@ namespace DomacinskiBurek\System;
 
 require_once __DIR__ . '/Helpers.php';
 
+use DomacinskiBurek\Application\Auth\Login\Controller\Login;
+use DomacinskiBurek\Application\Auth\Register\Controller\Register;
 use DomacinskiBurek\Application\Default\Controller\Health;
 use DomacinskiBurek\System\Error\Handlers\InstanceNotCallable;
 use DomacinskiBurek\System\Error\Handlers\RouteMethodNotExist;
@@ -60,6 +62,12 @@ class Loader
         $route->set("get", "/", "index",
             fn(string $method) => fn() => $this->setCallBack(Health::class, false, $method)
         );
+        $route->set("get", "/auth/login", "index",
+            fn(string $method) => fn() => $this->setCallBack(Login::class, true, $method, $this->request, $this->route)
+        );
+        $route->set("get", "/auth/register", "index",
+            fn(string $method) => fn() => $this->setCallBack(Register::class, true, $method, $this->request, $this->route)
+        );
     }
 
     private function runCallback ($callback) {
@@ -71,10 +79,10 @@ class Loader
      * @throws InstanceNotCallable
      * @throws ReflectionException
      */
-    private function setCallBack (string $class, bool $contructor, string $method, ...$args)
+    private function setCallBack (string $class, bool $constructor, string $method, ...$args)
     {
         $callable = new ReflectionClass($class);
-        $callable = $contructor ? $callable->newInstanceArgs($args) : $callable->newInstanceWithoutConstructor();
+        $callable = $constructor ? $callable->newInstanceArgs($args) : $callable->newInstanceWithoutConstructor();
 
         return call_user_func([$callable, $method]);
     }
