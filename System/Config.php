@@ -35,6 +35,16 @@ class Config
         return (!is_null($param)) ? $this->config[$config_string][$param] : $this->config[$config_string];
     }
 
+    public function getAll (string $config_string): array
+    {
+        $params = [];
+        foreach (array_keys($this->config[$config_string]) as $value) {
+            $params[$value] = $this->get($config_string, $value);
+        }
+
+        return $params;
+    }
+
     private function has (string $config_string) : bool
     {
         return $this->config[$config_string] ?? false;

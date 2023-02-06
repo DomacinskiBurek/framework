@@ -20,23 +20,14 @@ class Query
         return static::build(static::determinate(static::queryType($queryName)), substr($queryName, (strpos($queryName, ':') + 2)), $queryParams);
     }
 
-
     /**
      * @throws Exception
      */
-    private static function build(QueryInterface $query, string $queryString, array|Model|null $params): string
+    private static function build(QueryInterface $query, string $queryString, array|null $params): string
     {
         switch (true) {
             case (is_null($params)):
                 return $query->get($queryString);
-            case ($params instanceof Model):
-                $queryString = $query->get($queryString);
-                foreach ($params->getProperties() as $key => $value) {
-                    if (str_contains($queryString, $key)) {
-                        $queryString = str_replace($queryString, ":$key", is_string($value) ? '$value' : $value);
-                    }
-                }
-                return $queryString;
             case (is_array($params)):
                 return sprintf($query->get($queryString), ...$params);
             default:
