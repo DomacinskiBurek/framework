@@ -1,0 +1,6 @@
+# Common configuration
+COM_URL=https://demo.leadshub.icu/
+
+AUTH_KEY=
+
+# Database configuration

@@ -1,0 +1,32 @@
+{
+    "name": "domacinskiburek/software",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DomacinskiBurek\\System\\": "System/",
+            "DomacinskiBurek\\Application\\": "Application/"
+        },
+        "files": [
+            "System/Helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Bojan Vukajlovic",
+            "email": "bojanbokivukajlovic@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "vlucas/phpdotenv": "5.4.x-dev" ,
+        "ext-pdo": "*",
+        "phpmailer/phpmailer": "dev-master",
+        "ext-intl": "*",
+        "firebase/php-jwt": "dev-main",
+        "ramsey/uuid": "5.x-dev",
+      "ext-gd": "*",
+        "phpoffice/phpspreadsheet": "^1.23",
+        "ext-redis": "*"
+    }
+}

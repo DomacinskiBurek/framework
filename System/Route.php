@@ -9,64 +9,41 @@ use DomacinskiBurek\System\Error\Handlers\RouteNotExists;
 
 class Route
 {
-    private array $routeList = [
-        "get"    => [],
-        "post"   => [],
-        "delete" => [],
-        "put"    => []
-    ];
+    public array $routeList = [];
+    private string $groupBy = "";
 
-    /**
-     * @throws RouteMethodNotExist
-     */
-    public function set (string $method, string $route, string $cmethod, callable $callback, array $group = []): void
+    public function __set(string $name, mixed $value) {}
+    public function __get(string $name) {}
+
+    public function groupBy (string $route) : self
     {
-        if ($this->hasMethod($method) === false) throw new RouteMethodNotExist ();
+        $this->groupBy = (!empty($this->groupBy)) ? implode("", [$this->groupBy, $route]) : $route;
 
-        foreach ($group as $gRoute => $gMethod) {
-            $this->set($method, trim($route, "/") . "/" . ltrim($gRoute, "/"), $gMethod, $callback);
-        }
-
-        $this->routeList[$method][$route] = $callback($cmethod);
+        return $this;
     }
 
-    /**
-     * @throws RouteNotExists
-     * @throws RouteMethodNotExist
-     */
-    public function get (string $method, string $route, ?Request $request = null)
+    public function register (string $method, string $route, string $classMethod, callable $callback): void
     {
-        $callback = $this->has($method, $route, $request);
+        if (!array_key_exists($method, $this->routeList)) $this->routeList[$method] = [];
 
-        if ($callback === false) throw new RouteNotExists();
-
-        return $callback;
+        $this->routeList[$method][implode("", [$this->groupBy, $route])] = $callback($classMethod);
     }
 
-    /**
-     * @throws RouteMethodNotExist
-     */
-    public function has (string $method, string $route, ?Request $request = null)
+    public function get (string $method, string $route, ?request $request = null)
     {
-        if ($this->hasMethod($method) === false) throw new RouteMethodNotExist ();
+        $routeList = $this->routeList[$method] ?? [];
 
-        $routeList = $this->routeList[$method];
-
-        foreach ($routeList as $assignedRoute => $returnCallback) {
+        foreach ($routeList as $assignedRoute => $callback) {
             if ($this->isRegexRoute($assignedRoute)) { //&& $this->isRegexRoute($route)
-                if ($this->matchRegexRoute($assignedRoute, $route, $request)) return $returnCallback;
+                if ($this->matchRegexRoute($assignedRoute, $route, $request)) return $callback;
             } else if ($assignedRoute === $route) {
-                return $returnCallback;
+                return $callback;
             }
         }
 
         return null;
     }
 
-    protected function hasMethod (string $method): bool
-    {
-        return array_key_exists($method, $this->routeList);
-    }
 
     protected function matchRegexRoute (string $assignedRoute, $route, ?Request $request = null): bool
     {

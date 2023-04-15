@@ -1,0 +1,5 @@
+---
+update_verify_key: 'UPDATE mt_user_verification mmv, mt_user mu SET mmv.status = true, mmv.updated_at = NOW(), mu.is_verified = true, mu.updated_at = NOW() WHERE mmv.u_id = mu.id AND mmv.uuid = ?'
+update_user_password: 'UPDATE mt_user SET password = ? WHERE id = ?'
+update_language_locale: 'UPDATE mt_user SET locale = (SELECT id FROM mt_language WHERE locale = ?) WHERE id = ?'
+update_user_avatar: 'UPDATE mt_user SET avatar = ? WHERE id = ?'

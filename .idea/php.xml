@@ -32,6 +32,18 @@
       <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/vendor/brick/math" />
       <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/Application/API" />
+      <path value="$PROJECT_DIR$/vendor/Cache/Upload" />
+      <path value="$PROJECT_DIR$/vendor/demo.leadshub.icu/.well-known" />
+      <path value="$PROJECT_DIR$/vendor/demo.leadshub.icu/.idea" />
+      <path value="$PROJECT_DIR$/vendor/System/RESTful" />
+      <path value="$PROJECT_DIR$/vendor/System/Query" />
+      <path value="$PROJECT_DIR$/vendor/System/I18n" />
+      <path value="$PROJECT_DIR$/vendor/System/Error" />
+      <path value="$PROJECT_DIR$/vendor/System/View" />
+      <path value="$PROJECT_DIR$/vendor/System/Mail" />
+      <path value="$PROJECT_DIR$/vendor/System/Cache" />
+      <path value="$PROJECT_DIR$/vendor/System/Language" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

@@ -5,7 +5,9 @@ namespace DomacinskiBurek\System;
 require_once __DIR__ . '/Helpers.php';
 
 use DomacinskiBurek\Application\API\Controller\Invoke;
-use DomacinskiBurek\Application\Health\Health;
+use DomacinskiBurek\Application\Auth\Login\Controller\Login;
+use DomacinskiBurek\Application\Auth\Register\Controller\Register;
+use DomacinskiBurek\Application\Default\Controller\Health;
 use DomacinskiBurek\System\Error\Handlers\InstanceNotCallable;
 use DomacinskiBurek\System\Error\Handlers\RouteMethodNotExist;
 use ParseError;
@@ -52,15 +54,14 @@ class Loader
         }
     }
 
+    /**
+     * @throws RouteMethodNotExist
+     */
     private function registerRoutes (Route $route) : void
     {
-        $route->register("get", "/", "index",
-            fn(string $method) => fn() => $this->setCallBack(Health::class, false, $method)
-        );
-
-        $app = $route->groupBy("/health");
-        $app->register("get", "/run", "index",
-            fn(string $method) => fn() => $this->setCallBack(Health::class, false, $method)
+        // Get
+        $route->set("get", "/", "index",
+            fn(string $method) => fn() => $this->setCallBack(Invoke::class, false, $method)
         );
     }
 

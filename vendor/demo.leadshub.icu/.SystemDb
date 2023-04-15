@@ -1,0 +1,6 @@
+SQLTYPE=mariadb
+SQLHOST=localhost
+SQLUSER=root
+SQLPASS=Bojan123321!!
+SQLDATABASE=ourdb
+SQLCHARSET=utf8
