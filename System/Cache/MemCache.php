@@ -6,8 +6,7 @@ use DomacinskiBurek\System\Cache\Interfaces\Cache;
 
 class MemCache implements Cache
 {
-
-    public function connect()
+    public function connect(string $host, string $username, string $password, int $port)
     {
         // TODO: Implement connect() method.
     }
