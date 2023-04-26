@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit150dbecc71462c7f94946ecb80111a7c
+class ComposerStaticInit1c3a6836c6ebb6aa6be118b6a161fc02
 {
     public static $files = array (
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
@@ -42,8 +42,6 @@ class ComposerStaticInit150dbecc71462c7f94946ecb80111a7c
         'M' => 
         array (
             'MyCLabs\\Enum\\' => 13,
-            'DomacinskiBurek\\System\\' => 19,
-            'DomacinskiBurek\\Application\\' => 24,
             'Matrix\\' => 7,
         ),
         'G' => 
@@ -57,6 +55,8 @@ class ComposerStaticInit150dbecc71462c7f94946ecb80111a7c
         'D' => 
         array (
             'Dotenv\\' => 7,
+            'DomacinskiBurek\\System\\' => 23,
+            'DomacinskiBurek\\Application\\' => 28,
         ),
         'C' => 
         array (
@@ -118,14 +118,6 @@ class ComposerStaticInit150dbecc71462c7f94946ecb80111a7c
         array (
             0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
-        'DomacinskiBurek\\System\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/System',
-        ),
-        'DomacinskiBurek\\Application\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Application',
-        ),
         'Matrix\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
@@ -141,6 +133,14 @@ class ComposerStaticInit150dbecc71462c7f94946ecb80111a7c
         'Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
+        ),
+        'DomacinskiBurek\\System\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/System',
+        ),
+        'DomacinskiBurek\\Application\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Application',
         ),
         'Complex\\' => 
         array (
@@ -174,10 +174,10 @@ class ComposerStaticInit150dbecc71462c7f94946ecb80111a7c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit150dbecc71462c7f94946ecb80111a7c::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit150dbecc71462c7f94946ecb80111a7c::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit150dbecc71462c7f94946ecb80111a7c::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit150dbecc71462c7f94946ecb80111a7c::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1c3a6836c6ebb6aa6be118b6a161fc02::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1c3a6836c6ebb6aa6be118b6a161fc02::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit1c3a6836c6ebb6aa6be118b6a161fc02::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit1c3a6836c6ebb6aa6be118b6a161fc02::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -2,36 +2,34 @@
 
 namespace DomacinskiBurek\System;
 
-use DomacinskiBurek\System\View\Interfaces\RenderInterface;
+use DomacinskiBurek\System\View\Page;
 use DomacinskiBurek\System\View\Template;
-use Exception;
 
-class View implements RenderInterface
+class View
 {
-    /**
-     * @throws Exception
-     */
-    public static function render($source, ?array $resource = null, int $code = 200, ?string $header = null)
+    public function render(mixed $data, array $addon, int $httpCode = 200): array
     {
-        http_response_code($code);
+        return ["content" => $this->pageParser($data, $addon), "type" => sprintf("content-type: %s", $this->header($data)), "code" => $httpCode];
+    }
 
+    private function pageParser (mixed $data, array $addon) : string
+    {
         switch (true) {
-            case (is_null($header) && is_array($source)):
-                header("Content-Type: application/json");
-                break;
-            case (is_null($header) && is_string($source)):
-                header("Content-Type: text/html");
-                break;
+            case is_array($data) || is_object($data):
+                return json_encode($data);
             default:
-                header("Content-Type: $header");
-                break;
+                return (new Page(new Template()))->render($data, $addon);
         }
-
-        if (!is_string($source)) return $source;
-
-        $template = new Template();
-        $render = $template->createPageTemplate();
-
-        return $render->render($source, $resource);
+    }
+    private function header (mixed $data): string
+    {
+        switch (true) {
+            case is_array($data) || is_object($data):
+                return "application/json";
+            case $data === strip_tags($data):
+                return "text/plain";
+            default:
+                return "text/html";
+        }
     }
 }

@@ -1,2 +1,0 @@
----
-user_login_check: "SELECT password FROM mt_user WHERE username = :username"

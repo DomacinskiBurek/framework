@@ -1,0 +1,76 @@
+--------------------------------------
+[] - Code 0
+[] - Line 30
+[] - Message Unable to load view.
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/View/Page.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/System/View/Page.php(18): DomacinskiBurek\System\View\Page->renderSource()
+#1 /home/domacinskiburek/PhpstormProjects/framework/System/View.php(35): DomacinskiBurek\System\View\Page->render()
+#2 /home/domacinskiburek/PhpstormProjects/framework/Application/Auth/Controller/Auth.php(24): DomacinskiBurek\System\View::render()
+#3 [internal function]: DomacinskiBurek\Application\Auth\Controller\Auth->login()
+#4 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(86): call_user_func()
+#5 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(68): DomacinskiBurek\System\Loader->setCallBack()
+#6 [internal function]: DomacinskiBurek\System\Loader->DomacinskiBurek\System\{closure}()
+#7 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(75): call_user_func()
+#8 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(41): DomacinskiBurek\System\Loader->runCallback()
+#9 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(11): DomacinskiBurek\System\Loader->run()
+#10 {main}
+--------------------------------------
+--------------------------------------
+[] - Code 0
+[] - Line 30
+[] - Message Unable to load view.
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/View/Page.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/System/View/Page.php(18): DomacinskiBurek\System\View\Page->renderSource()
+#1 /home/domacinskiburek/PhpstormProjects/framework/System/View.php(35): DomacinskiBurek\System\View\Page->render()
+#2 /home/domacinskiburek/PhpstormProjects/framework/Application/Auth/Controller/Auth.php(24): DomacinskiBurek\System\View::render()
+#3 [internal function]: DomacinskiBurek\Application\Auth\Controller\Auth->login()
+#4 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(86): call_user_func()
+#5 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(68): DomacinskiBurek\System\Loader->setCallBack()
+#6 [internal function]: DomacinskiBurek\System\Loader->DomacinskiBurek\System\{closure}()
+#7 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(75): call_user_func()
+#8 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(41): DomacinskiBurek\System\Loader->runCallback()
+#9 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(11): DomacinskiBurek\System\Loader->run()
+#10 {main}
+--------------------------------------
+--------------------------------------
+[] - Code 0
+[] - Line 29
+[] - Message Unable to load view.
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/View/Page.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/System/View/Page.php(21): DomacinskiBurek\System\View\Page->renderSource()
+#1 /home/domacinskiburek/PhpstormProjects/framework/System/View/Template.php(22): DomacinskiBurek\System\View\Page->DomacinskiBurek\System\View\{closure}()
+#2 /home/domacinskiburek/PhpstormProjects/framework/System/View/Page.php(20): DomacinskiBurek\System\View\Template->render()
+#3 /home/domacinskiburek/PhpstormProjects/framework/System/View.php(23): DomacinskiBurek\System\View\Page->render()
+#4 /home/domacinskiburek/PhpstormProjects/framework/System/View.php(14): DomacinskiBurek\System\View->pageParser()
+#5 /home/domacinskiburek/PhpstormProjects/framework/System/Helpers.php(87): DomacinskiBurek\System\View->render()
+#6 /home/domacinskiburek/PhpstormProjects/framework/Application/Health/Health.php(17): view()
+#7 [internal function]: DomacinskiBurek\Application\Health\Health->index()
+#8 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(80): call_user_func()
+#9 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(62): DomacinskiBurek\System\Loader->setCallBack()
+#10 [internal function]: DomacinskiBurek\System\Loader->DomacinskiBurek\System\{closure}()
+#11 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(69): call_user_func()
+#12 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(39): DomacinskiBurek\System\Loader->runCallback()
+#13 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(11): DomacinskiBurek\System\Loader->run()
+#14 {main}
+--------------------------------------
+--------------------------------------
+[] - Code 0
+[] - Line 29
+[] - Message Unable to load view.
+[] - File /home/domacinskiburek/PhpstormProjects/framework/System/View/Page.php
+[] - Trace #0 /home/domacinskiburek/PhpstormProjects/framework/System/View/Page.php(21): DomacinskiBurek\System\View\Page->renderSource()
+#1 /home/domacinskiburek/PhpstormProjects/framework/System/View/Template.php(22): DomacinskiBurek\System\View\Page->DomacinskiBurek\System\View\{closure}()
+#2 /home/domacinskiburek/PhpstormProjects/framework/System/View/Page.php(20): DomacinskiBurek\System\View\Template->render()
+#3 /home/domacinskiburek/PhpstormProjects/framework/System/View.php(23): DomacinskiBurek\System\View\Page->render()
+#4 /home/domacinskiburek/PhpstormProjects/framework/System/View.php(14): DomacinskiBurek\System\View->pageParser()
+#5 /home/domacinskiburek/PhpstormProjects/framework/System/Helpers.php(87): DomacinskiBurek\System\View->render()
+#6 /home/domacinskiburek/PhpstormProjects/framework/Application/Health/Health.php(17): view()
+#7 [internal function]: DomacinskiBurek\Application\Health\Health->index()
+#8 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(80): call_user_func()
+#9 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(62): DomacinskiBurek\System\Loader->setCallBack()
+#10 [internal function]: DomacinskiBurek\System\Loader->DomacinskiBurek\System\{closure}()
+#11 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(69): call_user_func()
+#12 /home/domacinskiburek/PhpstormProjects/framework/System/Loader.php(39): DomacinskiBurek\System\Loader->runCallback()
+#13 /home/domacinskiburek/PhpstormProjects/framework/Public/index.php(11): DomacinskiBurek\System\Loader->run()
+#14 {main}
+--------------------------------------

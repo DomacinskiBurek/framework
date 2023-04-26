@@ -1,7 +1,7 @@
 <?php
 
+use DomacinskiBurek\System\View;
 use DomacinskiBurek\System\Config;
-use DomacinskiBurek\System\Database;
 use DomacinskiBurek\System\Error\Handlers\DatabaseException;
 use DomacinskiBurek\System\Language;
 use DomacinskiBurek\System\System;
@@ -78,5 +78,12 @@ if (!function_exists('generalconfig')) {
         $config->load("config", "yaml");
 
         return $config->get('config');
+    }
+}
+
+if (!function_exists("view")) {
+    function view(mixed $data, array $addon = [], int $httpCode = 200): array
+    {
+        return (new View)->render($data, $addon, $httpCode);
     }
 }

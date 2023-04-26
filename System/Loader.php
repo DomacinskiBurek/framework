@@ -4,7 +4,6 @@ namespace DomacinskiBurek\System;
 
 require_once __DIR__ . '/Helpers.php';
 
-use DomacinskiBurek\Application\API\Controller\Invoke;
 use DomacinskiBurek\Application\Health\Health;
 use DomacinskiBurek\System\Error\Handlers\InstanceNotCallable;
 use DomacinskiBurek\System\Error\Handlers\RouteMethodNotExist;
@@ -24,10 +23,7 @@ class Loader
         $this->config->load("config", "yaml");
     }
 
-    /**
-     * @throws RouteMethodNotExist|Error\Handlers\RouteNotExists
-     */
-    public function run (): void
+    public function run (): string
     {
         $this->registerRoutes($this->route);
 
@@ -37,19 +33,12 @@ class Loader
         $route = $this->route->get($this->request->method(), $this->request->url(''), $this->request);
         if (is_null($route)) $route = function () { $this->request->responseCode(404); return ["message" => "unauthorized access"];};
 
-        $instance = $this->runCallback($route);
+        $view = $this->runCallback($route);
 
-        if (is_object($instance) || is_array($instance)) {
-            exit(
-                json_encode(
-                    $instance
-                )
-            );
-        } else if (is_string($instance)) {
-            exit(
-                $instance
-            );
-        }
+        $this->request->responseCode($view["code"]);
+        $this->request->responseHeader($view["type"]);
+
+        return $view["content"];
     }
 
     private function registerRoutes (Route $route) : void

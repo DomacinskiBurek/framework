@@ -2,34 +2,32 @@
 
 namespace DomacinskiBurek\System\View;
 
-use DomacinskiBurek\System\Error\Handlers\FileNotFound;
 use DomacinskiBurek\System\Error\Handlers\NotFound;
+use DomacinskiBurek\System\System;
 
-class Page extends PageFounder
+class Page
 {
-    /**
-     * @throws NotFound
-     * @throws FileNotFound
-     */
-    public function render(string $source, ?array $resource = null): string
-    {
-        if (is_null($resource) === false) $this->resource = array_merge($resource, $this->resource);
+    private string $directory;
+    private Template $template;
 
-        return $this->layer->createSharedLayer($this->renderSource($source), function (string $source) {
-            return $this->renderSource($source);
+    public function __construct (Template $template)
+    {
+        $this->template = $template;
+        $this->directory = System::getSeparator() == '\\' ? str_replace(System::getSeparator(), '/', dirname(__DIR__, 2)) : dirname(__DIR__, 2);
+    }
+    public function render (string $source, array $addon): string
+    {
+        return $this->template->render($this->renderSource($source, $addon), function (string $source) use ($addon) {
+            return $this->renderSource($source, $addon);
         });
     }
 
-    /**
-     * @throws NotFound
-     */
-    protected function renderSource (string $source) : string
+    protected function renderSource (string $source, array $addon) : string
     {
         $sourceParse = $this->renderPathParse($source);
+        if (!is_file($sourceParse)) throw new \Exception('Unable to load view.');
 
-        if (!is_file($sourceParse)) throw new NotFound('Unable to load view.');
-
-        extract($this->resource);
+        extract($addon);
 
         ob_start();
         include $sourceParse;
@@ -41,9 +39,9 @@ class Page extends PageFounder
     {
         $rootDir = $this->directory;
 
-        $view_route = array_merge(explode('/', $rootDir), ['Application'], explode('.', $source));
+        $view_route = array_merge(explode(System::getSeparator(), $rootDir), ['Application'], array_map(fn(string $string) => ucwords($string), explode('.', $source)));
 
-        $build_file = end($view_route) . '.Render.php';
+        $build_file = strtolower(end($view_route)) . '.render.php';
 
         unset($view_route[array_key_last($view_route)]);
 

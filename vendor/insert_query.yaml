@@ -1,6 +1,0 @@
----
-create_new_user: "INSERT INTO mt_user (uuid, first_name, last_name, email, username, password, dateofbirth) VALUES (?,?,?,?,?,?,?)"
-create_new_user_verify: "INSERT INTO mt_user_verification (uuid, u_id, status) VALUES (?,?,?)"
-create_new_user_session: "INSERT INTO mt_user_sessions (uuid, u_id) VALUES (?,?)"
-create_new_reset_password: "INSERT INTO mt_user_reset_password (uuid, u_id) VALUES (?,?)"
-create_api_access_token: "INSERT mt_api_keys (token, private_key, status) VALUES (?,?,?)"

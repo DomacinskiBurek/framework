@@ -8,4 +8,4 @@ use DomacinskiBurek\System\Loader;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-(new Loader())->run();
+echo (new Loader())->run();
