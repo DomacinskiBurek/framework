@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../dashlite-template/.idea/dashlite-template.iml" filepath="$PROJECT_DIR$/../dashlite-template/.idea/dashlite-template.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/framework.iml" filepath="$PROJECT_DIR$/.idea/framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../luique_html/.idea/luique_html.iml" filepath="$PROJECT_DIR$/../luique_html/.idea/luique_html.iml" />
     </modules>
   </component>
 </project>

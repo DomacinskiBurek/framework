@@ -27,20 +27,10 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpoption/phpoption" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/php-enum" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/Application/API" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/Cache/Upload" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/demo.leadshub.icu/.well-known" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/demo.leadshub.icu/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/System/RESTful" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/System/Query" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/System/I18n" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/System/Error" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/System/View" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/System/Mail" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/System/Cache" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/System/Language" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="luique_html" />
+    <orderEntry type="module" module-name="dashlite-template" />
   </component>
 </module>

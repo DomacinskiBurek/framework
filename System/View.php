@@ -18,7 +18,7 @@ class View
             case is_array($data) || is_object($data):
                 return json_encode($data);
             default:
-                return (new Page(new Template()))->render($data, $addon);
+                return (new Template(new Page()))->render($data, $addon);
         }
     }
     private function header (mixed $data): string

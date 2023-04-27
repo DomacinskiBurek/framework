@@ -2,51 +2,42 @@
 
 namespace DomacinskiBurek\System\View;
 
-use DomacinskiBurek\System\Error\Handlers\NotFound;
-use DomacinskiBurek\System\System;
+use Closure;
 
 class Page
 {
-    private string $directory;
-    private Template $template;
+    private int $deepLevel = 1;
+    private array $loadedTags = [];
 
-    public function __construct (Template $template)
+    public function build(string $template, Closure $param): string
     {
-        $this->template = $template;
-        $this->directory = System::getSeparator() == '\\' ? str_replace(System::getSeparator(), '/', dirname(__DIR__, 2)) : dirname(__DIR__, 2);
-    }
-    public function render (string $source, array $addon): string
-    {
-        return $this->template->render($this->renderSource($source, $addon), function (string $source) use ($addon) {
-            return $this->renderSource($source, $addon);
-        });
-    }
+        $tags = $this->getTemplateTags($template);
+        if (count($tags) > 0) {
+            foreach ($tags as $tag) {
+                if (array_key_exists($tag, $this->loadedTags)) {
+                    $tagTemplate = $this->loadedTags[$tag];
+                } else {
+                    $tagTemplate = $param($this->tagPath($tag));
+                    $this->loadedTags[$tag] = $tagTemplate;
+                }
 
-    protected function renderSource (string $source, array $addon) : string
-    {
-        $sourceParse = $this->renderPathParse($source);
-        if (!is_file($sourceParse)) throw new \Exception('Unable to load view.');
+                $template = substr_replace($template, $tagTemplate, strpos($template, $tag, 1), mb_strlen($tag));
+            }
+        }
 
-        extract($addon);
-
-        ob_start();
-        include $sourceParse;
-
-        return ob_get_clean() ?: '';
+        if (++$this->deepLevel < 3) $template = $this->build($template, $param);
+        return $template;
     }
 
-    protected function renderPathParse (string $source): string
+    private function tagPath (string $tag): string
     {
-        $rootDir = $this->directory;
+        preg_match('/[A-Z_]+/m', $tag, $matches);
+        return str_replace("_", ".", strtolower($matches[0] ?? ""));
+    }
 
-        $view_route = array_merge(explode(System::getSeparator(), $rootDir), ['Application'], array_map(fn(string $string) => ucwords($string), explode('.', $source)));
-
-        $build_file = strtolower(end($view_route)) . '.render.php';
-
-        unset($view_route[array_key_last($view_route)]);
-
-        $view_route = array_merge($view_route, ['View', $build_file]);
-
-        return implode('/', $view_route);
+    private function getTemplateTags (string $template) : array
+    {
+        preg_match_all('/{{\s[A-Z_]+\s}}/m', $template, $matches);
+        return (empty($matches)) ? [] : $matches[0];
     }
 }
