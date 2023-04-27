@@ -4,7 +4,6 @@ namespace DomacinskiBurek\Application\Auth\Controller;
 
 use DomacinskiBurek\System\Controller;
 use DomacinskiBurek\System\Request;
-use DomacinskiBurek\System\View;
 use Exception;
 
 class Auth extends Controller
