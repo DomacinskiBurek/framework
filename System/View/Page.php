@@ -6,7 +6,8 @@ use Closure;
 
 class Page
 {
-    private int $deepLevel = 1;
+    private int $depthLevel = 1;
+    private int $maxDepthLevel = 3;
     private array $loadedTags = [];
 
     public function build(string $template, Closure $param): string
@@ -25,7 +26,7 @@ class Page
             }
         }
 
-        if (++$this->deepLevel < 3) $template = $this->build($template, $param);
+        if (++$this->depthLevel < $this->maxDepthLevel) $template = $this->build($template, $param);
         return $template;
     }
 
