@@ -14,8 +14,8 @@ class Loader
 {
     public function __construct
     (
-        public Route $route             = new Route(),
-        public Request $request         = new Request()
+        public Route $route     = new Route(),
+        public Request $request = new Request()
     )
     {
         Config::includeConfig("config");
