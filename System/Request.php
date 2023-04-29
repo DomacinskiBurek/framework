@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DomacinskiBurek\System;
 
+use DomacinskiBurek\System\Config\Config;
 use JetBrains\PhpStorm\NoReturn;
 
 class Request
@@ -21,12 +22,12 @@ class Request
         return strtolower($_SERVER['REQUEST_METHOD'] ?? 'GET');
     }
 
-    public function responseCode (int $code = 200) : void
+    public function code (int $code = 200) : void
     {
         http_response_code($code);
     }
 
-    public function responseHeader (string $content_type = 'text/html;charset=utf-8') : void
+    public function header (string $content_type = 'text/html;charset=utf-8') : void
     {
         if (is_null($this->has($content_type))) header("Content-Type: $content_type");
     }
@@ -37,21 +38,21 @@ class Request
         exit;
     }
 
-    public function url (string $route) : string // Route like folder
+    public function origin () : string // Route like folder
     {
-        $uri = $_SERVER['REQUEST_URI'];
-
-        if (str_contains($uri, $route)) $uri = rtrim(str_replace($route, '', $uri), '/');
-        if (empty($uri)) $uri = '/';
-
-        return $uri;
+        return Config::get("SERVER_HOST", "config");
     }
 
-    public function urlHost (string $host): bool
+    public function getOriginPath()
+    {
+        return $_SERVER["REQUEST_URI"];
+    }
+
+    public function isOrigin (): bool
     {
         $_SERVER['REQUEST_SCHEME'] ??= 'http';
 
-        return $host === "{$_SERVER['REQUEST_SCHEME']}://{$_SERVER['HTTP_HOST']}";
+        return $this->origin() === "{$_SERVER['REQUEST_SCHEME']}://{$_SERVER['HTTP_HOST']}";
     }
 
     public function setParams (string $method, array $field) : void

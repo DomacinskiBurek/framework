@@ -2,7 +2,7 @@
 
 namespace DomacinskiBurek\System\Query;
 
-use DomacinskiBurek\System\Config;
+use DomacinskiBurek\System\Config\Config;
 use DomacinskiBurek\System\Query\Interfaces\QueryInterface;
 use Exception;
 
@@ -16,9 +16,7 @@ class SelectQuery implements QueryInterface
      */
     public function __construct ()
     {
-        $config = new Config();
-        $config->load("select_query", "yaml");
-        $this->queryList = $config->getAll("select_query");
+        Config::includeConfig("select_query");
     }
 
     /**
@@ -26,8 +24,10 @@ class SelectQuery implements QueryInterface
      */
     public function get(string $query) : string
     {
-        if (array_key_exists($query, $this->queryList) === false) throw new Exception('Query does not exist in our system.');
+        $rawQuery = Config::get($query, "select_query");
 
-        return $this->queryList[$query];
+        return (is_null($rawQuery)) ?
+            throw new Exception('Query does not exist in our system.')
+            : $rawQuery;
     }
 }

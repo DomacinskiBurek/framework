@@ -2,9 +2,9 @@
 
 namespace DomacinskiBurek\System\Query;
 
-use DomacinskiBurek\System\Config;
-use Exception;
+use DomacinskiBurek\System\Config\Config;
 use DomacinskiBurek\System\Query\Interfaces\QueryInterface;
+use Exception;
 
 class UpdateQuery implements QueryInterface
 {
@@ -15,9 +15,7 @@ class UpdateQuery implements QueryInterface
      */
     public function __construct ()
     {
-        $config = new Config();
-        $config->load("update_query", "yaml");
-        $this->queryList = $config->getAll("update_query");
+        Config::includeConfig("update_query");
     }
 
     /**
@@ -25,8 +23,10 @@ class UpdateQuery implements QueryInterface
      */
     public function get(string $query) : string
     {
-        if (array_key_exists($query, $this->queryList) === false) throw new Exception('Query does not exist in our system.');
+        $rawQuery = Config::get($query, "update_query");
 
-        return $this->queryList[$query];
+        return (is_null($rawQuery)) ?
+            throw new Exception('Query does not exist in our system.')
+            : $rawQuery;
     }
 }

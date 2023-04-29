@@ -11,7 +11,7 @@ class Template
     private string $directory;
     public function __construct(private Page $page)
     {
-        $this->directory = System::getSeparator() == '\\' ? str_replace(System::getSeparator(), '/', dirname(__DIR__, 2)) : dirname(__DIR__, 2);
+        $this->directory = directorySeparator() == '\\' ? str_replace(directorySeparator(), '/', dirname(__DIR__, 2)) : dirname(__DIR__, 2);
     }
 
     public function render (string $source, array $addon): string
@@ -46,7 +46,7 @@ class Template
     {
         $rootDir = $this->directory;
 
-        $view_route = array_merge(explode(System::getSeparator(), $rootDir), ['Application'], array_map(fn(string $string) => ucwords($string), explode('.', $source)));
+        $view_route = array_merge(explode(directorySeparator(), $rootDir), ['Application'], array_map(fn(string $string) => ucwords($string), explode('.', $source)));
 
         $build_file = strtolower(end($view_route)) . '.render.php';
 

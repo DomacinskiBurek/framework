@@ -2,11 +2,10 @@
 
 namespace DomacinskiBurek\System\Mail;
 
-use DomacinskiBurek\System\Config;
+use DomacinskiBurek\System\Config\Config;
 use DomacinskiBurek\System\Mail\Interfaces\MailFactory;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 
 abstract class Mail implements MailFactory
 {

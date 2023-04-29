@@ -26,7 +26,7 @@ class Route
         $this->routeList[$method][implode("", [$this->groupBy, $route])] = $callback($classMethod);
     }
 
-    public function get (string $method, string $route, ?request $request = null)
+    public function get (string $method, string $route, ?Request $request = null)
     {
         $routeList = $this->routeList[$method] ?? [];
 
@@ -54,7 +54,7 @@ class Route
             $iterate = 0;
             while (++$iterate < count($found)) $regexParams[] = $found[$iterate][0];
 
-            if (is_null($request) === false) $request->setParams($request->method(), array_combine($routeParams, $regexParams));
+            if (!is_null($request)) $request->setParams($request->method(), array_combine($routeParams, $regexParams));
 
             return true;
         }

@@ -27,6 +27,7 @@
         "ramsey/uuid": "5.x-dev",
       "ext-gd": "*",
         "phpoffice/phpspreadsheet": "^1.23",
-        "ext-redis": "*"
+        "ext-redis": "*",
+        "ext-yaml": "*"
     }
 }

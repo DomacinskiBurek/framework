@@ -38,8 +38,8 @@ class Error extends Exception
 
     final public function __LogError ()
     {
-        $location  = System::GetDirectory();
-        $separator = System::GetSeparator();
+        $location  = directoryRoot();
+        $separator = directorySeparator();
 
         $location .= $separator . "Cache";
 

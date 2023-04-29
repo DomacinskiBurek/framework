@@ -7,9 +7,12 @@ use DomacinskiBurek\System\View\Template;
 
 class View
 {
-    public function render(mixed $data, array $addon, int $httpCode = 200): array
+    public function render(Request $request, mixed $data, array $addon, int $httpCode = 200): string
     {
-        return ["content" => $this->pageParser($data, $addon), "type" => sprintf("content-type: %s", $this->header($data)), "code" => $httpCode];
+        $request->code($httpCode);
+        $request->header($this->header($data));
+
+        return $this->pageParser($data, $addon);
     }
 
     private function pageParser (mixed $data, array $addon) : string

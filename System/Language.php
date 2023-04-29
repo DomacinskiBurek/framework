@@ -56,7 +56,7 @@ class Language
         if (!array_key_exists($languageLocale, $this->languages)) $this->languages[$languageLocale] = [];
         if (!array_key_exists($targetFile, $this->languages[$languageLocale])) $this->languages[$languageLocale][$targetFile] = [];
 
-        $languagePath    = System::getLanguageDirectory() . "/" . $this->getLocale() . "/$targetFile.php";
+        $languagePath    = directoryLang() . "/" . $this->getLocale() . "/$targetFile.php";
 
         $requireLanguage = $this->requireLanguage($languagePath);
 

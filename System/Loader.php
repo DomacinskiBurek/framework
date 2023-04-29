@@ -5,9 +5,8 @@ namespace DomacinskiBurek\System;
 require_once __DIR__ . '/Helpers.php';
 
 use DomacinskiBurek\Application\Health\Health;
+use DomacinskiBurek\System\Config\Config;
 use DomacinskiBurek\System\Error\Handlers\InstanceNotCallable;
-use DomacinskiBurek\System\Error\Handlers\RouteMethodNotExist;
-use ParseError;
 use ReflectionClass;
 use ReflectionException;
 
@@ -16,29 +15,22 @@ class Loader
     public function __construct
     (
         public Route $route             = new Route(),
-        public Request $request         = new Request(),
-        private readonly Config $config = new Config()
+        public Request $request         = new Request()
     )
     {
-        $this->config->load("config", "yaml");
+        Config::includeConfig("config");
     }
 
     public function run (): string
     {
         $this->registerRoutes($this->route);
 
-        if ($this->request->urlHost($this->config->get("config", "SERVER_HOST")) === false) $this->request->redirect($this->config->get("config", "SERVER_HOST"));
-        if (str_contains(strtolower($this->request->url('/')), 'public')) throw new ParseError('Project cannot be accessed directly. Please contact author of the project!');
+        if (!$this->request->isOrigin()) $this->request->redirect($this->request->origin());
+        $routeCallback = $this->route->get($this->request->method(), $this->request->getOriginPath(), $this->request);
 
-        $route = $this->route->get($this->request->method(), $this->request->url(''), $this->request);
-        if (is_null($route)) $route = function () { $this->request->responseCode(404); return ["message" => "unauthorized access"];};
+        if (!is_callable($routeCallback)) return view(["error" => "not found"], [], 404);
 
-        $view = $this->runCallback($route);
-
-        $this->request->responseCode($view["code"]);
-        $this->request->responseHeader($view["type"]);
-
-        return $view["content"];
+        return $this->runCallback($routeCallback);
     }
 
     private function registerRoutes (Route $route) : void
